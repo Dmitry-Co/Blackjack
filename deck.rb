@@ -1,15 +1,28 @@
 class Deck
-  attr_accessor :cards 
+  attr_accessor :cards
 
   def initialize
-    @cards = []
+    @faces = faces_arr
+    @suits = suits_arr
+    @cards = generate
   end
 
   def generate
-    52.times do
-    @cards << Card.new(@name)
+    cards = []
+    @faces.each do |face|
+      @suits.each do |suit|
+        cards << Card.new(face: face, suit: suit)
+      end
     end
-    @cards.shuffle
+    cards.shuffle
+  end
+
+  def faces_arr
+    Card::FACES
+  end
+
+  def suits_arr
+    Card::SUITS
   end
   
   def take_card
