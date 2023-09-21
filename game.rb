@@ -1,10 +1,13 @@
 require_relative 'card'
 require_relative 'deck'
+require_relative 'user'
 require_relative 'player'
-#require_relative 'dealer'
+require_relative 'dealer'
 
 class Game
   def initialize
+    greeting
+    @player_name = player_name
     @deck = Deck.new
     @deck.generate
     @player = Player.new
@@ -12,12 +15,11 @@ class Game
   end
 
   def start
-    puts 'Запрос имени'
-    ask_name
+    start_notification
     loop do
       play_round
       make_bet
-      balance_process
+      bank_process
       player_actions
       dealer_actions
       define_winner
@@ -26,9 +28,17 @@ class Game
     end
   end
 
-  def ask_name
-    puts 'Please input your name: '
-    puts 'Gamer!'
+  def greeting
+    puts 'Welcome to the Black Jack game'
+  end
+
+  def player_name
+    puts 'Please enter your name: '
+    gets.chomp
+  end
+
+  def start_notification
+    puts "Hello #{@player_name}! Game has started! Good luck!"
   end
 
   def play_round
@@ -105,7 +115,7 @@ class Game
     # end
   end
 
-  def balance_process
+  def bank_process
     #  raise "не введено"
     #  true
     # if @player # если игрок победил, дополню условие

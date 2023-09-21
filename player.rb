@@ -1,10 +1,8 @@
-class Player
+class Player < User
   attr_accessor :cards
 
   def initialize
-    @balance = 100
-    @cards = []
-    @hand = []
+    super
   end
 
   def show_hidden_cards
