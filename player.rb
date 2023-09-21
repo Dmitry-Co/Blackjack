@@ -5,11 +5,6 @@ class Player < User
     super
   end
 
-  def show_hidden_cards
-    # найти метод который замещает значение * но не изменяет исходного значения переменной
-    @cards.each {|card| puts card}
-  end
-
   def show_cards
     @cards.each { |card| puts card }
   end

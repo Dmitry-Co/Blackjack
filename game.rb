@@ -11,7 +11,7 @@ class Game
     @deck = Deck.new
     @deck.generate
     @player = Player.new
-    @dealer = Player.new
+    @dealer = Dealer.new
   end
 
   def start
