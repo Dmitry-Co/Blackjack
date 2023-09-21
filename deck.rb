@@ -7,11 +7,11 @@ class Deck
 
   def generate
     52.times do
-      @cards << Card.new
+    @cards << Card.new(@name)
     end
     @cards.shuffle
   end
-
+  
   def take_card
     @cards.pop
   end

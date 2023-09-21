@@ -15,7 +15,6 @@ class Player < User
     puts "#{self} делает ход"
   end
 
-  # не знал как сделать метод подсчета в очках через карты
   def points
     @cards.map(&:points).sum
   end
