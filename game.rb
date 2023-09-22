@@ -66,6 +66,9 @@ class Game
   def show_status
     puts "player card is #{@player.show_cards}"
     puts "dealer card is #{@dealer.show_hidden_cards}"
+    puts "player points is #{@player.points}"
+    puts "dealer points is #{@player.points}"
+    
     # @cards
   end
 

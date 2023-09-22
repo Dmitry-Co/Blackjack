@@ -1,24 +1,18 @@
 class Card
   
-  FACES = %w[2 3 4 5 6 7 8 9 10 J Q K]
-  SUITS = %w[♣ ♥ ♠ ♦]
+  RANKS = %w[2 3 4 5 6 7 8 9 10 J Q K].freeze
+  SUITS = %w[♣ ♥ ♠ ♦].freeze
   
-  attr_reader :name, :value
+  attr_reader :name, :points
 
-  def initialize(args = {})
-    #@cards = []
-    @face = args[:face]
-    @suit = args[:suit]
-    @name = create_name
-   #{} @value = set_value
+  def initialize(rank, suit)
+    @name = "#{rank}#{suit}"
+    @points = value(rank)
   end
 
-  def create_name
-    return ' ' unless @face && @suit
-    @face + @suit
-  end
-
-  def points
-    10
+  def value(rank)
+    return 1 if rank == 'A'
+    return 10 if rank.is_a?(String)
+    rank
   end
 end
