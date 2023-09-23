@@ -1,18 +1,8 @@
 class Deck
-  attr_accessor :make_deck
+  attr_reader :deck
 
   def initialize
     @deck = make_deck.shuffle
-  end
-
-  def generate
-    cards = []
-    @faces.each do |face|
-      @suits.each do |suit|
-        cards << Card.new(face: face, suit: suit)
-      end
-    end
-    cards.shuffle
   end
   
   def deal_card
@@ -20,6 +10,6 @@ class Deck
   end
 
   def make_deck
-    
+    Card::RANK.product(Card::SUITS).map { |rank, suit| Card.new(rank, suit) }
   end
 end

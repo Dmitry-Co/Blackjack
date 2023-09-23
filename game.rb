@@ -36,7 +36,7 @@ class Game
     bets_make
     round = Round.new(player1, player2)
     round.play
-    
+
   end
 
     def bets_make
