@@ -5,14 +5,18 @@ require_relative 'player'
 require_relative 'dealer'
 
 class Game
+  include Interface
+
   attr_reader :player1, :player2, :bet
 
   def initialize(bank = 100, bet = 10)
     Interface.welcome_message
     @bank_start = bank
     @bet = bet
+    @round_counter = 0
     @player1 = Player.new(Interface.name, bank)
     @player2 = Dealer.new('Dealer', bank)
+    @players = [@player1, @player2]
   end
 
   def play
@@ -27,7 +31,8 @@ class Game
   end
 
   def main
-
+    Interface.show_round_welcome(@round_counter += 1)
+    @payers.each { |pl| Interface.show_status(pl.name, pl.bank) } 
   end
 
     def bets_make

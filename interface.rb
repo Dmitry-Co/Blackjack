@@ -31,12 +31,25 @@ module Interface
     end
   end
 
+  def show_round_welcome(number)
+    puts '======================'
+    puts "===== Раунд #{number} ====="
+  end
+
+  def show_status(name, bank)
+    puts "Игрок #{name} ($#{bank})"
+  end
+
   def show_final(name, money)
     if money < 0
       puts "=> Всего доброго, #{name}! Ваш проигрыш составил $#{money.abs}"
     else
       puts "=> Всего доброго, #{name}! Ваш выигрыш составил $#{money}"
     end
+  end
+
+  def show_status
+    puts "Игрок #{}"
   end
 
   def unknown_command
