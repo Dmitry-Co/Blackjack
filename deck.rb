@@ -1,10 +1,8 @@
 class Deck
-  attr_accessor :cards
+  attr_accessor :make_deck
 
   def initialize
-    @faces = faces_arr
-    @suits = suits_arr
-    @cards = generate
+    @deck = make_deck.shuffle
   end
 
   def generate
@@ -16,16 +14,12 @@ class Deck
     end
     cards.shuffle
   end
-
-  def faces_arr
-    Card::FACES
-  end
-
-  def suits_arr
-    Card::SUITS
-  end
   
-  def take_card
-    @cards.pop
+  def deal_card
+    @deck.pop
+  end
+
+  def make_deck
+    
   end
 end

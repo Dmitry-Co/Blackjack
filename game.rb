@@ -32,7 +32,11 @@ class Game
 
   def main
     Interface.show_round_welcome(@round_counter += 1)
-    @payers.each { |pl| Interface.show_status(pl.name, pl.bank) } 
+    @payers.each { |pl| Interface.show_status(pl.name, pl.bank) }
+    bets_make
+    round = Round.new(player1, player2)
+    round.play
+    
   end
 
     def bets_make
