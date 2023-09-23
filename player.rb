@@ -1,27 +1,14 @@
-class Player < User
-  attr_accessor :cards
+class Player
+  iclude Interface
 
-  def initialize
-    super
+  def initialize(name, bank)
+    @name = name
+    @bank = bank
+    @hand = Hand.new
   end
 
-  def show_cards
-    @cards.each { |card| puts card }
+  def decision
+    Interface.menu(Interface::CHOICE_MENU)
   end
 
-  # делаем ход
-  def make_move
-    # @cards.pop
-    puts "#{self} делает ход"
-  end
-
-  def points
-    @cards.map(&:points).sum
-  end
-
-  def hand
-    @cards << Card.new
-    # if @cards > 3
-    # raise 'не более трех карт'
-  end
 end

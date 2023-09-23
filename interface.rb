@@ -11,4 +11,28 @@ module Interface
     '0' => { label: 'Взять деньги и покинуть игру', action: :exit }
   }
 
+  # functions
+
+  def name
+    ask('=> Как вас завут?')
+  end
+
+  def menu(menu)
+    showmenu(menu)
+    while choice = menu[ask('?>').to_s] || {}
+      break choice[:action] unless choice[:action].nil?
+
+      unknown_command
+    end
+  end
+
+  def unknown_command
+    puts '=> unknown command'
+  end
+
+  def showmenu
+    puts '-------------'
+    menu.each { |k, v| puts "#{k} - #{v[:label]}" }
+    puts '-------------'
+  end
 end
