@@ -17,7 +17,7 @@ module Interface
     puts '--- Добро пожаловать ---'
     puts '--- в игру Blackjack ---'
   end
-  
+
   def name
     ask('=> Как вас завут?')
   end
@@ -31,10 +31,18 @@ module Interface
     end
   end
 
+  def show_final(name, money)
+    if money < 0
+      puts "=> Всего доброго, #{name}! Ваш проигрыш составил $#{money.abs}"
+    else
+      puts "=> Всего доброго, #{name}! Ваш выигрыш составил $#{money}"
+    end
+  end
+
   def unknown_command
     puts '=> unknown command'
   end
-
+  
   def showmenu
     puts '-------------'
     menu.each { |k, v| puts "#{k} - #{v[:label]}" }

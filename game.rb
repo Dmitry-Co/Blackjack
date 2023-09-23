@@ -9,10 +9,25 @@ class Game
 
   def initialize(bank = 100, bet = 10)
     Interface.welcome_message
-    @player1 = Player.new(Interface.name, bank)
-    @palyer2 = Dealer.new('Dealer', bank)
-    @bank = bank
+    @bank_start = bank
     @bet = bet
+    @player1 = Player.new(Interface.name, bank)
+    @player2 = Dealer.new('Dealer', bank)
+  end
+
+  def play
+    loop do
+      main
+      what_next = menu(Interface::GAME_MENU)
+      break if what_next == :exit
+
+      reset_cards
+    end
+    show_final(player1.name, player1.bank - @bank_start)
+  end
+
+  def main
+
   end
 
     def bets_make
@@ -22,6 +37,11 @@ class Game
 
     def bets_back
       player1.topup_bank(@bet)
-      palyer2.topup_bank(@bet)
+      player2.topup_bank(@bet)
+    end
+
+    def reset_cards
+      player1.hand.reset
+      player2.hand.reset
     end
 end

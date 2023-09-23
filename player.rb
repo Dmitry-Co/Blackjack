@@ -20,6 +20,4 @@ class Player
    def topup_bank(num)
     @bank += num
    end
-
-
 end
