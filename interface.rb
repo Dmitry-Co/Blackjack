@@ -13,6 +13,11 @@ module Interface
 
   # functions
 
+  def welcome_message
+    puts '--- Добро пожаловать ---'
+    puts '--- в игру Blackjack ---'
+  end
+  
   def name
     ask('=> Как вас завут?')
   end
