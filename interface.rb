@@ -48,8 +48,8 @@ module Interface
     end
   end
 
-  def show_status
-    puts "Игрок #{}"
+  def show_cards(name, cards, score)
+    puts "Карты #{name}: #{cards} [#{score}]"
   end
 
   def unknown_command
