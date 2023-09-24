@@ -1,29 +1,8 @@
-class Dealer < User
-  attr_accessor :cards
-  
-  def initialize
-    super
-  end
-  
-  def show_hidden_cards
-    # найти метод который замещает значение * но не изменяет исходного значения переменной
-    @cards.each { |card| puts card }
-  end
+class Dealer < Player
+  def decision
+    return :open if hand.cards.size == 3
+    return :take if hand.score < 17
 
-    # делаем ход
-    def make_move
-      # @cards.pop
-      puts "#{self} делает ход"
-    end
-
-
-  def points
-    @cards.map(&:points).sum
-  end
-
-  def hand
-    @cards << Card.new
-    # if @cards > 3
-    # raise 'не более трех карт'
+    :skip
   end
 end
