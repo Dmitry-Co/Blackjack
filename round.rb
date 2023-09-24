@@ -1,7 +1,11 @@
 class Round
+  attr_reader :result
+
   def initialize(player1, player2)
     @player = player1
     @dealer = player2
+    @result = nil
+    @deck = Deck.new
   end
 
   def play

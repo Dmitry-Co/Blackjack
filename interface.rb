@@ -39,6 +39,16 @@ module Interface
   def show_status(name, bank)
     puts "Игрок #{name} ($#{bank})"
   end
+  
+  def show_winner(name)
+    puts '==================='
+    puts "=> Раунд выиграл #{name}"
+  end
+
+  def show_draw
+    puts '==================='
+    puts '=> Ничья, ставки возвращены'
+  end
 
   def show_decision(name, decision)
     decision ||= :none

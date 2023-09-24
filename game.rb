@@ -36,7 +36,8 @@ class Game
     bets_make
     round = Round.new(player1, player2)
     round.play
-
+    check_winner(round.result)
+    
   end
 
     def bets_make
@@ -52,5 +53,16 @@ class Game
     def reset_cards
       player1.hand.reset
       player2.hand.reset
+    end
+
+    def check_winner(result)
+      if result == :draw || result == :both_lost
+        Interface.show_draw
+        bets_back
+      else
+        winner = result
+        winner.topup_bank(bet * 2)
+        Interface.show_winner(winner.name)
+      end
     end
 end
