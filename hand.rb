@@ -16,7 +16,7 @@ class Hand
   end
 
   def show_hidden
-    @cards.reduce('') { |acc, _card| acc + '**'}.lstrip
+    @cards.reduce('') { |acc, _card| acc + '**' }.lstrip
   end
 
   def score_hidden
@@ -28,7 +28,7 @@ class Hand
     @score = 0
   end
 
-  def counts_points
+  def count_points
     raw = score_raw
     raw += 10 if ace? && raw <= 11
     raw

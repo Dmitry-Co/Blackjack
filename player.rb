@@ -1,5 +1,5 @@
 class Player
-  iclude Interface
+  include Interface
 
   attr_reader :name, :bank, :hand
 
@@ -10,14 +10,14 @@ class Player
   end
 
   def decision
-    Interface.menu(Interface::CHOICE_MENU)
+    Interface.menu(Interface::CHOICES_MENU)
   end
 
   def place_bet(bet)
     @bank -= bet
   end
-  
-   def topup_bank(num)
+
+  def topup_bank(num)
     @bank += num
-   end
+  end
 end

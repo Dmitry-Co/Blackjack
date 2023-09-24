@@ -32,7 +32,7 @@ class Round
     move(@player)
   end
 
-  def move
+  def move(player)
     return :open if player.hand.cards.size == 3
 
     decision = player.decision
@@ -40,7 +40,7 @@ class Round
 
     deal_cards(player, 1) if decision == :take
     Interface.show_decision(player.name, decision)
-    type = player.class == Dealer ? :hidden : :show
+    type = player.instance_of?(Dealer) ? :hidden : :show
     player_cards(player, type)
   end
 

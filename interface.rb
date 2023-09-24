@@ -1,9 +1,8 @@
 module Interface
-  
   CHOICES_MENU = {
     '1' => { label: 'Взять карту',    action: :take },
     '2' => { label: 'Открыть карты',  action: :open },
-    '3' => { label: 'Пропустить ход', action: :skip}
+    '3' => { label: 'Пропустить ход', action: :skip }
   }
 
   GAME_MENU = {
@@ -11,7 +10,7 @@ module Interface
     '0' => { label: 'Взять деньги и покинуть игру', action: :exit }
   }
 
-  # functions
+  module_function
 
   def welcome_message
     puts '--- Добро пожаловать ---'
@@ -24,7 +23,7 @@ module Interface
   end
 
   def name
-    ask('=> Как вас завут?')
+    ask('=> Как вас зовут?')
   end
 
   def menu(menu)
@@ -72,11 +71,16 @@ module Interface
     puts "Карты #{name}: #{cards} [#{score}]"
   end
 
+  def ask(question)
+    print question + ' '
+    gets.chomp
+  end
+
   def unknown_command
     puts '=> unknown command'
   end
-  
-  def showmenu
+
+  def showmenu(menu)
     puts '-------------'
     menu.each { |k, v| puts "#{k} - #{v[:label]}" }
     puts '-------------'

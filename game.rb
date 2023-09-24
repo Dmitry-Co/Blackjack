@@ -1,9 +1,3 @@
-require_relative 'card'
-require_relative 'deck'
-require_relative 'user'
-require_relative 'player'
-require_relative 'dealer'
-
 class Game
   include Interface
 
@@ -32,7 +26,7 @@ class Game
 
   def main
     Interface.show_round_welcome(@round_counter += 1)
-    @payers.each { |pl| Interface.show_status(pl.name, pl.bank) }
+    @players.each { |pl| Interface.show_status(pl.name, pl.bank) }
     bets_make
     round = Round.new(player1, player2)
     round.play
@@ -41,46 +35,41 @@ class Game
     check_ruined
   end
 
-    def bets_make
-      player1.place_bet(@bet)
-      player2.place_bet(@bet)
-    end
+  def bets_make
+    player1.place_bet(@bet)
+    player2.place_bet(@bet)
+  end
 
-    def bets_back
-      player1.topup_bank(@bet)
-      player2.topup_bank(@bet)
-    end
+  def bets_back
+    player1.topup_bank(@bet)
+    player2.topup_bank(@bet)
+  end
 
-    def reset_cards
-      player1.hand.reset
-      player2.hand.reset
-    end
+  def reset_cards
+    player1.hand.reset
+    player2.hand.reset
+  end
 
-    def reset_cards
-      player1.hand.reset
-      player2.hand.reset
-    end
+  def check_loser(player)
+    player.bank <= 0 ? player : false
+  end
 
-    def check_loser(player)
-      player.bank <= 0 ? player : false
+  def check_winner(result)
+    if %i[draw both_lost].include?(result)
+      Interface.show_draw
+      bets_back
+    else
+      winner = result
+      winner.topup_bank(bet * 2)
+      Interface.show_winner(winner.name)
     end
+  end
 
-    def check_winner(result)
-      if result == :draw || result == :both_lost
-        Interface.show_draw
-        bets_back
-      else
-        winner = result
-        winner.topup_bank(bet * 2)
-        Interface.show_winner(winner.name)
-      end
-    end
+  def check_ruined
+    ruined = @players.select { |pl| check_loser(pl) }.first
+    return unless ruined
 
-    def check_ruined
-      ruined = @players.select { |pl| check_loser(pl) }.first
-      if ruined
-        Interface.show_ruined(ruined.name)
-        abort
-      end
-    end
+    Interface.show_ruined(ruined.name)
+    abort
+  end
 end
