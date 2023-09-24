@@ -1,4 +1,7 @@
 class Round
+  include Interface
+  BLACKJACK = 21
+  
   attr_reader :result
 
   def initialize(player1, player2)
@@ -12,6 +15,7 @@ class Round
     setup_round
     moves
     player_cards(@dealer)
+    @result = who_wins
   end
 
   def setup_round
@@ -50,5 +54,18 @@ class Round
     else
       Interface.show_cards(player.name, player.hand.show, player.hand.score)
     end
+  end
+
+  def who_wins
+    score1 = @player.hand.score
+    score2 = @dealer.hand.score
+    return :both_lost if [score1, score2].min > BLACKJACK
+
+    return @player if score2 > BLACKJACK
+    return @dealer if score1 > BLACKJACK
+    return @player if BLACKJACK - score1 < BLACKJACK - score2
+    return @dealer if BLACKJACK - score1 > BLACKJACK - score2
+
+    :draw
   end
 end
