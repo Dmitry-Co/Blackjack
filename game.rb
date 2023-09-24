@@ -24,6 +24,8 @@ class Game
     show_final(player1.name, player1.bank - @bank_start)
   end
 
+  private
+
   def main
     Interface.show_round_welcome(@round_counter += 1)
     @players.each { |pl| Interface.show_status(pl.name, pl.bank) }

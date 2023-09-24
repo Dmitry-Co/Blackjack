@@ -28,6 +28,8 @@ class Hand
     @score = 0
   end
 
+  private
+
   def count_points
     raw = score_raw
     raw += 10 if ace? && raw <= 11

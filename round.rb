@@ -18,6 +18,8 @@ class Round
     @result = who_wins
   end
 
+  private
+
   def setup_round
     deal_cards(@player, 2)
     deal_cards(@dealer, 2)
