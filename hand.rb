@@ -23,6 +23,11 @@ class Hand
     'XX'
   end
 
+  def reset
+    @cards.clear
+    @score = 0
+  end
+
   def counts_points
     raw = score_raw
     raw += 10 if ace? && raw <= 11

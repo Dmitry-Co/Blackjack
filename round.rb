@@ -1,7 +1,7 @@
 class Round
   include Interface
   BLACKJACK = 21
-  
+
   attr_reader :result
 
   def initialize(player1, player2)

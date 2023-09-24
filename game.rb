@@ -56,6 +56,11 @@ class Game
       player2.hand.reset
     end
 
+    def reset_cards
+      player1.hand.reset
+      player2.hand.reset
+    end
+
     def check_loser(player)
       player.bank <= 0 ? player : false
     end
