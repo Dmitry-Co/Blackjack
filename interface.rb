@@ -40,6 +40,11 @@ module Interface
     puts "Игрок #{name} ($#{bank})"
   end
 
+  def show_decision(name, decision)
+    decision ||= :none
+    puts "Ход #{name}, решение: #{decision}"
+  end
+
   def show_final(name, money)
     if money < 0
       puts "=> Всего доброго, #{name}! Ваш проигрыш составил $#{money.abs}"

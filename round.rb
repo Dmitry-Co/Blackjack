@@ -6,6 +6,7 @@ class Round
 
   def play
     setup_round
+    moves
     player_cards(@dealer)
   end
 
@@ -14,6 +15,25 @@ class Round
     deal_cards(@dealer, 2)
     player_cards(@player, :open)
     player_cards(@dealer, :hidden)
+  end
+
+  def moves
+    return if move(@player) == :open
+    return if move(@dealer) == :open
+
+    move(@player)
+  end
+
+  def move
+    return :open if player.hand.cards.size == 3
+
+    decision = player.decision
+    return :open if decision == :open
+
+    deal_cards(player, 1) if decision == :take
+    Interface.show_decision(player.name, decision)
+    type = player.class == Dealer ? :hidden : :show
+    player_cards(player, type)
   end
 
   def deal_cards(player, quantity)
