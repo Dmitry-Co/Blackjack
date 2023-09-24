@@ -8,7 +8,7 @@ class Hand
 
   def take_card(card)
     @cards << card
-    @score
+    @score = count_points
   end
 
   def show
@@ -21,5 +21,19 @@ class Hand
 
   def score_hidden
     'XX'
+  end
+
+  def counts_points
+    raw = score_raw
+    raw += 10 if ace? && raw <= 11
+    raw
+  end
+
+  def score_raw
+    @cards.reduce(0) { |acc, card| acc + card.points }
+  end
+
+  def ace?
+    !!@cards.detect { |card| card.points == 1 }
   end
 end
