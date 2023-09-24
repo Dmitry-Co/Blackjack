@@ -18,6 +18,11 @@ module Interface
     puts '--- в игру Blackjack ---'
   end
 
+  def show_ruined(player_name)
+    puts '--- Игра окончена ---'
+    puts "=> Игрок #{player_name} весь проигрался"
+  end
+
   def name
     ask('=> Как вас завут?')
   end
@@ -39,7 +44,7 @@ module Interface
   def show_status(name, bank)
     puts "Игрок #{name} ($#{bank})"
   end
-  
+
   def show_winner(name)
     puts '==================='
     puts "=> Раунд выиграл #{name}"

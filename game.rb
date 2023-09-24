@@ -37,7 +37,8 @@ class Game
     round = Round.new(player1, player2)
     round.play
     check_winner(round.result)
-    
+    @players.each { |pl| Interface.show_status(pl.name, pl.bank) }
+    check_ruined
   end
 
     def bets_make
@@ -55,6 +56,10 @@ class Game
       player2.hand.reset
     end
 
+    def check_loser(player)
+      player.bank <= 0 ? player : false
+    end
+
     def check_winner(result)
       if result == :draw || result == :both_lost
         Interface.show_draw
@@ -63,6 +68,14 @@ class Game
         winner = result
         winner.topup_bank(bet * 2)
         Interface.show_winner(winner.name)
+      end
+    end
+
+    def check_ruined
+      ruined = @players.select { |pl| check_loser(pl) }.first
+      if ruined
+        Interface.show_ruined(ruined.name)
+        abort
       end
     end
 end
