@@ -23,6 +23,8 @@ class Round
   def player_cards(player, type = :show)
     if type == :hidden
       Interface.show_cards(player.name, player.hand.show_hidden, player.hand.score_hidden)
+    else
+      Interface.show_cards(player.name, player.hand.show, player.hand.score)
     end
   end
 end
