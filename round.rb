@@ -13,7 +13,7 @@ class Round
     deal_cards(@dealer, 2)
   end
 
-  def deal_cards
+  def deal_cards(player, quantity)
     quantity.times { player.hand.take_card(@deck.deal_card) }
   end
 end
